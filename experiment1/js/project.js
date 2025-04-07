@@ -80,10 +80,10 @@ const fillers = {
   ],
 };
 
-const template = `With the first pick in the 2052 Draft, the $team select Ian Liu Jr.\n
-At age $age, Ian Liu Jr. is listed at $height, $weight.\n
-After his run in the NCAA March Madness Tournament, scouts compared his shooting to $shooting\n
-His former college coaches compared his defensive prowess to $defense and his iq to $iq\n
+const template = `With the first pick in the 2052 Draft, the $team select Ian Liu Jr. <br>
+At age $age, Ian Liu Jr. is listed at $height, $weight.<br>
+After his run in the NCAA March Madness Tournament, scouts compared his shooting to $shooting <br>
+His former college coaches compared his defensive prowess to $defense and his iq to $iq <br>
 After watching him at the combine, we believe he dribbles like $handles and finishes around the rim like $finishing`;
 
 // STUDENTS: You don't need to edit code below this line.
