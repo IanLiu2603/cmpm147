@@ -10,6 +10,12 @@
 const VALUE1 = 1;
 const VALUE2 = 2;
 
+/* exported setup, draw */
+let seed = 0;
+let starX = 0
+let starY = 0
+let speed = 2
+
 // Globals
 let myInstance;
 let canvasContainer;
@@ -49,31 +55,80 @@ function setup() {
     resizeScreen();
   });
   resizeScreen();
+  drawBackground()
+  drawFullWaveform(); // Draw initially
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
-
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
-
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  drawBackground()
+  shootingStar()
+  drawFullWaveform()
+  
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
     // code to run when mouse is pressed
+}
+function shootingStar(){
+  let noiseScale = 0.014;
+  let noiseLevel = 100; 
+  let x = random(50,width-50)
+  let nx = noiseScale * x
+  let mountainy = height - noiseLevel * noise(nx)
+  
+  fill(255);
+  noStroke()
+  ellipse(starX, starY, 5);
+  starX = starX + speed;
+  starY = starY + speed;
+  
+  if(starX > width || starY > mountainy){
+    starX = random(0,width-50);
+    starY = 0;
+    speed = random(1,3)
+    seed++
+  }
+}
+
+function drawFullWaveform() {
+  //background(255); // Clear the canvas
+
+  randomSeed(seed);
+
+  let noiseScale = 0.014;
+  let noiseLevel = 100; 
+
+  let bottom = height; 
+
+  stroke(0);
+  for (let x = 0; x < width; x++) {
+    let nx = noiseScale * x;
+    let y = bottom - noiseLevel * noise(nx);
+    line(x, bottom, x, y);
+  }
+}
+
+function drawBackground(){
+  randomSeed(seed);
+  let c1,c2
+  c1 = color(0);
+  c2 = color(246, 77, 6);
+  
+  for(let y=0; y<height; y++){
+    n = map(y,0,height,0,1);
+    let newc = lerpColor(c1,c2,n);
+    stroke(newc);
+    line(0,y,width, y);
+  }
+  //Calc Sun Stuff
+  let noiseScale = 0.014;
+  let noiseLevel = 100; 
+  let x = random(50,width-50)
+  let nx = noiseScale * x
+  let mountainy = height - noiseLevel * noise(nx)
+  noStroke();
+  fill(246, 77, 6);
+  ellipse(x, mountainy-5, 40, 40); 
 }

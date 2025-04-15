@@ -81,9 +81,9 @@ const fillers = {
 };
 
 const template = `With the first pick in the 2052 Draft, the $team select Ian Liu Jr. 
-At age $age, Ian Liu Jr. is listed at $height, $weight.
-After his run in the NCAA March Madness Tournament, scouts compared his shooting to $shooting.
-His former college coaches compared his defensive prowess to $defense and his iq to $iq.
+At age $age, Ian Liu Jr. is listed at $height, $weight. 
+After his run in the NCAA March Madness Tournament, scouts compared his shooting to $shooting. 
+His former college coaches compared his defensive prowess to $defense and his iq to $iq. 
 After watching him at the combine, we believe he dribbles like $handles and finishes around the rim like $finishing`;
 
 // STUDENTS: You don't need to edit code below this line.
